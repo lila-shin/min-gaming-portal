@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mest Populære Pokémon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Brug background.jpg som baggrundsbillede */
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            /* Overlay for bedre læsbarhed */
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+        }
+        h1 {
+            color: #ffcb05;
+            text-align: center;
+            text-shadow: 2px 2px #3b4cca;
+        }
+        .pokemon-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            list-style-type: none;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+        }
+        .pokemon-item {
+            position: relative; /* For positioning the tooltip */
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+        }
+        .pokemon-item:last-child {
+            border-bottom: none;
+        }
+        .pokemon-name {
+            font-size: 1.5em;
+            color: #3b4cca;
+            font-weight: bold;
+            cursor: pointer; /* Indikerer interaktivitet */
+            position: relative;
+        }
+        .pokemon-description {
+            margin: 8px 0 0;
+        }
+        /* Tooltip container */
+        .pokemon-name:hover .tooltip {
+            display: block;
+        }
+        /* Tooltip styling */
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            width: 300px; /* Øget bredde til 300px */
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #3b4cca;
+            border-radius: 8px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .tooltip img {
+            width: 100%; /* Billedet fylder nu hele tooltip-ens bredde */
+            height: auto;
+            border-radius: 5px;
+        }
+        /* Arrow for the tooltip */
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #3b4cca transparent transparent;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .pokemon-list {
+                padding: 10px;
+            }
+            .pokemon-name {
+                font-size: 1.2em;
+            }
+            .tooltip {
+                left: 50%;
+                top: -310px; /* Justeret for at passe til større tooltip */
+                transform: translateX(-50%);
+                width: 300px;
+            }
+            .tooltip::before {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-color: #3b4cca transparent transparent transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>De 10 Mest Populære Pokémon</h1>
+
+    <ul class="pokemon-list">
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-pikachu">
+                1. Pikachu
+                <div class="tooltip" id="tooltip-pikachu">
+                    <img src="images/pikachu.jpg" alt="Pikachu">
+                </div>
+            </div>
+            <p class="pokemon-description">Pikachu er Pokémon-franchisens officielle maskot og er kendt for sit søde udseende og stærke elektriske evner. En favorit blandt fans i alle aldre.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-charizard">
+                2. Charizard
+                <div class="tooltip" id="tooltip-charizard">
+                    <img src="images/charizard.jpg" alt="Charizard">
+                </div>
+            </div>
+            <p class="pokemon-description">Charizard er en udvikling af Charmander og er populær på grund af sit dragelignende udseende og kraftige ildangreb. Den er også et ikon i Pokémon-spil og -kortspillet.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-eevee">
+                3. Eevee
+                <div class="tooltip" id="tooltip-eevee">
+                    <img src="images/eevee.jpg" alt="Eevee">
+                </div>
+            </div>
+            <p class="pokemon-description">Eevee er kendt for sin unikke evne til at udvikle sig til mange forskellige typer Pokémon, hvilket gør den ekstremt alsidig og populær blandt fans.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-mewtwo">
+                4. Mewtwo
+                <div class="tooltip" id="tooltip-mewtwo">
+                    <img src="images/mewtwo.jpg" alt="Mewtwo">
+                </div>
+            </div>
+            <p class="pokemon-description">Mewtwo er en stærk psykotisk Pokémon og en af de første legendariske Pokémon. Dens komplekse baggrundshistorie og styrke gør den til en favorit.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-lucario">
+                5. Lucario
+                <div class="tooltip" id="tooltip-lucario">
+                    <img src="images/lucario.jpg" alt="Lucario">
+                </div>
+            </div>
+            <p class="pokemon-description">Lucario er en kamp- og stål-type Pokémon, som også har en Mega Evolution. Den er især populær for sin ærefulde og stærke personlighed.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-greninja">
+                6. Greninja
+                <div class="tooltip" id="tooltip-greninja">
+                    <img src="images/greninja.jpg" alt="Greninja">
+                </div>
+            </div>
+            <p class="pokemon-description">Greninja er en vand- og mørke-type Pokémon og en udvikling af Froakie. Med sin hurtige, ninja-lignende stil og optrædener i anime har den vundet stor popularitet.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-gengar">
+                7. Gengar
+                <div class="tooltip" id="tooltip-gengar">
+                    <img src="images/gengar.jpg" alt="Gengar">
+                </div>
+            </div>
+            <p class="pokemon-description">Gengar er en spøgelses- og gift-type Pokémon og en af de originale 151. Den er populær for sit mystiske og til tider uhyggelige udseende.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-snorlax">
+                8. Snorlax
+                <div class="tooltip" id="tooltip-snorlax">
+                    <img src="images/snorlax.jpg" alt="Snorlax">
+                </div>
+            </div>
+            <p class="pokemon-description">Snorlax er kendt for sin store størrelse og sin tilbagelænede livsstil. Dens afslappede natur og charme har gjort den til en favorit.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-bulbasaur">
+                9. Bulbasaur
+                <div class="tooltip" id="tooltip-bulbasaur">
+                    <img src="images/bulbasaur.jpg" alt="Bulbasaur">
+                </div>
+            </div>
+            <p class="pokemon-description">Bulbasaur er den første Pokémon i Pokédex og er værdsat for sit søde design og venlige natur. Mange fans vælger ofte Bulbasaur som deres første Pokémon.</p>
+        </li>
+        <li class="pokemon-item">
+            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-jigglypuff">
+                10. Jigglypuff
+                <div class="tooltip" id="tooltip-jigglypuff">
+                    <img src="images/jigglypuff.jpg" alt="Jigglypuff">
+                </div>
+            </div>
+            <p class="pokemon-description">Jigglypuff er kendt for sin søde sang, som får andre til at falde i søvn. Den har opnået ikonstatus gennem sin optræden i anime-serien.</p>
+        </li>
+    </ul>
+
+</body>
+</html>

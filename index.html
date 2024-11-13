@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Gaming Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            /* Brug background.jpg som baggrundsbillede */
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* Overlay for bedre læsbarhed */
+            position: relative;
+        }
+        /* Overlay for bedre læsbarhed */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Juster opacity efter behov */
+            z-index: 1;
+        }
+        header {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #ffcc00;
+            text-shadow: 2px 2px #1e90ff;
+        }
+        main {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+        .card img {
+            width: 100%;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-content h2 {
+            margin: 0 0 10px;
+            font-size: 1.8em;
+            color: #1e90ff;
+        }
+        .card-content p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        .card-content a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .card-content a:hover {
+            background-color: #ffcc00;
+            color: #333;
+        }
+        footer {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Min Gaming Portal</h1>
+    </header>
+
+    <main>
+        <div class="card-container">
+            <!-- Pokémon Card -->
+            <div class="card">
+                <img src="images/Pokeball.png" alt="Pokéball">
+                <div class="card-content">
+                    <h2>Pokémon</h2>
+                    <p>Oplev de 10 mest populære Pokémon med interaktive billeder og detaljerede beskrivelser.</p>
+                    <a href="pokemon/index.html">Besøg Pokémon</a>
+                </div>
+            </div>
+            <!-- Genshin Impact Card -->
+            <div class="card">
+                <img src="images/Primogem.webp" alt="Primogem">
+                <div class="card-content">
+                    <h2>Genshin Impact</h2>
+                    <p>Udforsk de 10 mest populære Genshin Impact karakterer med interaktive billeder og detaljerede beskrivelser.</p>
+                    <a href="Genshin-Impact/index.html">Besøg Genshin Impact</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Min Gaming Portal. Alle rettigheder forbeholdes.
+    </footer>
+</body>
+</html>
