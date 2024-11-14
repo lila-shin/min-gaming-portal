@@ -4,63 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mest Populære Pokémon</title>
+    
+    <!-- Importér Pokémon-lignende skrifttype -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <style>
+        /* Generel styling */
         body {
-            font-family: Arial, sans-serif;
-            /* Brug background.jpg som baggrundsbillede */
+            font-family: 'Press Start 2P', cursive; /* Pokémon-lignende skrifttype */
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #333;
+            color: #fff;
             margin: 0;
             padding: 20px;
             /* Overlay for bedre læsbarhed */
-            background-color: rgba(0, 0, 0, 0.5);
-            background-blend-mode: darken;
+            background-color: rgba(0, 0, 0, 0.7);
+            background-blend-mode: multiply;
         }
+
+        /* Header styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
         h1 {
-            color: #ffcb05;
+            color: #ffcb05; /* Pokémon gule farve */
             text-align: center;
-            text-shadow: 2px 2px #3b4cca;
+            text-shadow: 3px 3px #3b4cca;
+            font-size: 2em;
+            position: relative;
         }
+
+        /* Tilføj Pokémon-logo eller ikon til header */
+        h1::before {
+            content: url('images/pokemon-logo.png'); /* Sørg for at have et Pokémon-logo billede */
+            display: block;
+            margin: 0 auto 10px;
+            width: 150px;
+        }
+
+        /* Home knap styling */
+        .home-button {
+            display: flex;
+            align-items: center;
+            background-color: #3b4cca; /* Pokémon blå farve */
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #ffcb05; /* Pokémon gule kant */
+            border-radius: 8px;
+            font-size: 0.8em;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .home-button:hover {
+            background-color: #ffcb05; /* Skift til gult ved hover */
+            color: #3b4cca;
+            transform: scale(1.05);
+        }
+
+        /* Tilføj et Pokéball ikon til Home knappen */
+        .home-button::before {
+            content: url('images/pokeball-icon.png'); /* Sørg for at have en Pokéball ikon */
+            display: inline-block;
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Liste styling */
         .pokemon-list {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             list-style-type: none;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 10px;
-            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.8);
+            border: 5px solid #3b4cca;
+            border-radius: 15px;
+            box-shadow: 0px 8px 32px rgba(0,0,0,0.7);
         }
+
+        /* Individuelle Pokémon-item styling */
         .pokemon-item {
-            position: relative; /* For positioning the tooltip */
-            border-bottom: 1px solid #ddd;
-            padding: 15px;
+            position: relative;
+            border-bottom: 2px solid #ffcb05;
+            padding: 20px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: flex-start;
         }
+
         .pokemon-item:last-child {
             border-bottom: none;
         }
+
+        .pokemon-item:hover {
+            background: rgba(255, 203, 5, 0.2); /* Pokémon gule hover-effekt */
+        }
+
+        /* Pokémon-navn styling */
         .pokemon-name {
-            font-size: 1.5em;
-            color: #3b4cca;
+            font-size: 1.4em;
+            color: #3b4cca; /* Pokémon blå farve */
             font-weight: bold;
-            cursor: pointer; /* Indikerer interaktivitet */
+            cursor: pointer;
             position: relative;
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
         }
+
+        /* Tilføj Pokéball ikon til Pokémon-navn */
+        .pokemon-name::before {
+            content: url('images/pokeball-icon.png'); /* Sørg for at have en Pokéball ikon */
+            display: inline-block;
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+
+        /* Pokémon-beskrivelse styling */
         .pokemon-description {
-            margin: 8px 0 0;
+            flex: 1;
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.5;
         }
+
         /* Tooltip container */
-        .pokemon-name:hover .tooltip {
-            display: block;
-        }
-        /* Tooltip styling */
         .tooltip {
             display: none;
             position: absolute;
-            top: 50%;
-            left: 110%;
-            transform: translateY(-50%);
-            width: 300px; /* Øget bredde til 300px */
+            top: 20px;
+            left: 100%;
+            margin-left: 20px;
+            width: 300px;
             padding: 10px;
             background-color: #fff;
             border: 2px solid #3b4cca;
@@ -68,35 +151,52 @@
             box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
             z-index: 10;
         }
+
+        .pokemon-name:hover + .tooltip,
+        .pokemon-name:focus + .tooltip {
+            display: block;
+        }
+
         .tooltip img {
-            width: 100%; /* Billedet fylder nu hele tooltip-ens bredde */
+            width: 100%;
             height: auto;
             border-radius: 5px;
         }
-        /* Arrow for the tooltip */
+
+        /* Tooltip pil */
         .tooltip::before {
             content: "";
             position: absolute;
             top: 50%;
-            left: -10px;
+            right: 100%;
             transform: translateY(-50%);
             border-width: 5px;
             border-style: solid;
             border-color: transparent #3b4cca transparent transparent;
         }
+
         /* Responsive Design */
         @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .home-button {
+                margin-top: 15px;
+            }
             .pokemon-list {
-                padding: 10px;
+                padding: 15px;
             }
             .pokemon-name {
-                font-size: 1.2em;
+                font-size: 1em;
+                margin-right: 10px;
             }
             .tooltip {
                 left: 50%;
-                top: -310px; /* Justeret for at passe til større tooltip */
+                top: -310px;
                 transform: translateX(-50%);
-                width: 300px;
+                width: 280px;
+                margin-left: 0;
             }
             .tooltip::before {
                 top: 100%;
@@ -104,101 +204,98 @@
                 transform: translateX(-50%);
                 border-color: #3b4cca transparent transparent transparent;
             }
+            .pokemon-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Tilføj Pokémon farvetema */
+        .pokemon-item:nth-child(odd) {
+            background: rgba(59, 76, 202, 0.1); /* Blå nuance */
+        }
+
+        .pokemon-item:nth-child(even) {
+            background: rgba(255, 203, 5, 0.1); /* Gul nuance */
         }
     </style>
 </head>
 <body>
 
-    <h1>De 10 Mest Populære Pokémon</h1>
+    <!-- Header med Home knap -->
+    <div class="header">
+        <h1>De 10 Mest Populære Pokémon</h1>
+        <a href="../index.html" class="home-button">Home</a>
+    </div>
 
     <ul class="pokemon-list">
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-pikachu">
-                1. Pikachu
-                <div class="tooltip" id="tooltip-pikachu">
-                    <img src="images/pikachu.jpg" alt="Pikachu">
-                </div>
+            <div class="pokemon-name" tabindex="0">1. Pikachu</div>
+            <div class="tooltip" id="tooltip-pikachu">
+                <img src="images/pikachu.jpg" alt="Pikachu" loading="lazy">
             </div>
             <p class="pokemon-description">Pikachu er Pokémon-franchisens officielle maskot og er kendt for sit søde udseende og stærke elektriske evner. En favorit blandt fans i alle aldre.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-charizard">
-                2. Charizard
-                <div class="tooltip" id="tooltip-charizard">
-                    <img src="images/charizard.jpg" alt="Charizard">
-                </div>
+            <div class="pokemon-name" tabindex="0">2. Charizard</div>
+            <div class="tooltip" id="tooltip-charizard">
+                <img src="images/charizard.jpg" alt="Charizard" loading="lazy">
             </div>
             <p class="pokemon-description">Charizard er en udvikling af Charmander og er populær på grund af sit dragelignende udseende og kraftige ildangreb. Den er også et ikon i Pokémon-spil og -kortspillet.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-eevee">
-                3. Eevee
-                <div class="tooltip" id="tooltip-eevee">
-                    <img src="images/eevee.jpg" alt="Eevee">
-                </div>
+            <div class="pokemon-name" tabindex="0">3. Eevee</div>
+            <div class="tooltip" id="tooltip-eevee">
+                <img src="images/eevee.jpg" alt="Eevee" loading="lazy">
             </div>
             <p class="pokemon-description">Eevee er kendt for sin unikke evne til at udvikle sig til mange forskellige typer Pokémon, hvilket gør den ekstremt alsidig og populær blandt fans.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-mewtwo">
-                4. Mewtwo
-                <div class="tooltip" id="tooltip-mewtwo">
-                    <img src="images/mewtwo.jpg" alt="Mewtwo">
-                </div>
+            <div class="pokemon-name" tabindex="0">4. Mewtwo</div>
+            <div class="tooltip" id="tooltip-mewtwo">
+                <img src="images/mewtwo.jpg" alt="Mewtwo" loading="lazy">
             </div>
             <p class="pokemon-description">Mewtwo er en stærk psykotisk Pokémon og en af de første legendariske Pokémon. Dens komplekse baggrundshistorie og styrke gør den til en favorit.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-lucario">
-                5. Lucario
-                <div class="tooltip" id="tooltip-lucario">
-                    <img src="images/lucario.jpg" alt="Lucario">
-                </div>
+            <div class="pokemon-name" tabindex="0">5. Lucario</div>
+            <div class="tooltip" id="tooltip-lucario">
+                <img src="images/lucario.jpg" alt="Lucario" loading="lazy">
             </div>
             <p class="pokemon-description">Lucario er en kamp- og stål-type Pokémon, som også har en Mega Evolution. Den er især populær for sin ærefulde og stærke personlighed.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-greninja">
-                6. Greninja
-                <div class="tooltip" id="tooltip-greninja">
-                    <img src="images/greninja.jpg" alt="Greninja">
-                </div>
+            <div class="pokemon-name" tabindex="0">6. Greninja</div>
+            <div class="tooltip" id="tooltip-greninja">
+                <img src="images/greninja.jpg" alt="Greninja" loading="lazy">
             </div>
             <p class="pokemon-description">Greninja er en vand- og mørke-type Pokémon og en udvikling af Froakie. Med sin hurtige, ninja-lignende stil og optrædener i anime har den vundet stor popularitet.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-gengar">
-                7. Gengar
-                <div class="tooltip" id="tooltip-gengar">
-                    <img src="images/gengar.jpg" alt="Gengar">
-                </div>
+            <div class="pokemon-name" tabindex="0">7. Gengar</div>
+            <div class="tooltip" id="tooltip-gengar">
+                <img src="images/gengar.jpg" alt="Gengar" loading="lazy">
             </div>
             <p class="pokemon-description">Gengar er en spøgelses- og gift-type Pokémon og en af de originale 151. Den er populær for sit mystiske og til tider uhyggelige udseende.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-snorlax">
-                8. Snorlax
-                <div class="tooltip" id="tooltip-snorlax">
-                    <img src="images/snorlax.jpg" alt="Snorlax">
-                </div>
+            <div class="pokemon-name" tabindex="0">8. Snorlax</div>
+            <div class="tooltip" id="tooltip-snorlax">
+                <img src="images/snorlax.jpg" alt="Snorlax" loading="lazy">
             </div>
             <p class="pokemon-description">Snorlax er kendt for sin store størrelse og sin tilbagelænede livsstil. Dens afslappede natur og charme har gjort den til en favorit.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-bulbasaur">
-                9. Bulbasaur
-                <div class="tooltip" id="tooltip-bulbasaur">
-                    <img src="images/bulbasaur.jpg" alt="Bulbasaur">
-                </div>
+            <div class="pokemon-name" tabindex="0">9. Bulbasaur</div>
+            <div class="tooltip" id="tooltip-bulbasaur">
+                <img src="images/bulbasaur.jpg" alt="Bulbasaur" loading="lazy">
             </div>
             <p class="pokemon-description">Bulbasaur er den første Pokémon i Pokédex og er værdsat for sit søde design og venlige natur. Mange fans vælger ofte Bulbasaur som deres første Pokémon.</p>
         </li>
         <li class="pokemon-item">
-            <div class="pokemon-name" tabindex="0" aria-describedby="tooltip-jigglypuff">
-                10. Jigglypuff
-                <div class="tooltip" id="tooltip-jigglypuff">
-                    <img src="images/jigglypuff.jpg" alt="Jigglypuff">
-                </div>
+            <div class="pokemon-name" tabindex="0">10. Jigglypuff</div>
+            <div class="tooltip" id="tooltip-jigglypuff">
+                <img src="images/jigglypuff.jpg" alt="Jigglypuff" loading="lazy">
             </div>
             <p class="pokemon-description">Jigglypuff er kendt for sin søde sang, som får andre til at falde i søvn. Den har opnået ikonstatus gennem sin optræden i anime-serien.</p>
         </li>

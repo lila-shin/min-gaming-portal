@@ -16,11 +16,31 @@
             /* Overlay for bedre læsbarhed */
             background-color: rgba(0, 0, 0, 0.5);
             background-blend-mode: darken;
+            position: relative; /* For at positionere header korrekt */
+        }
+        header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+        }
+        .home-link a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: 2px solid #1e90ff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .home-link a:hover {
+            background-color: #1e90ff;
+            color: #fff;
         }
         h1 {
             color: #ffcc00;
             text-align: center;
             text-shadow: 2px 2px #1e90ff;
+            margin: 20px 0 10px;
         }
         .character-list {
             max-width: 800px;
@@ -92,6 +112,9 @@
         }
         /* Responsive Design */
         @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
             .character-list {
                 padding: 10px;
             }
@@ -115,7 +138,13 @@
 </head>
 <body>
 
-    <h1>Mest Populære Genshin Impact Karakterer</h1>
+    <header>
+        <div class="home-link">
+            <a href="../index.html">Home</a>
+        </div>
+    </header>
+
+    <h1>De 10 Mest Populære Genshin Impact Karakterer</h1>
 
     <ul class="character-list">
         <li class="character-item">
@@ -185,7 +214,7 @@
             <div class="character-name" tabindex="0" aria-describedby="tooltip-raiden">
                 8. Raiden Shogun
                 <div class="tooltip" id="tooltip-raiden">
-                    <img src="images/radienShogun.webp" alt="Raiden Shogun">
+                    <img src="images/raidenshogun.webp" alt="Raiden Shogun">
                 </div>
             </div>
             <p class="character-description">Raiden Shogun er Electro-anvender og den nuværende Shogun af Inazuma. Hun er kendt for sin strenge ledelse og ønsket om evig stabilitet.</p>
@@ -200,9 +229,9 @@
             <p class="character-description">Kamisato Ayaka er en Cryo-anvender fra Inazuma og en højt respekteret medlem af Kamisato Clan. Hun kombinerer elegance med kampfærdigheder.</p>
         </li>
         <li class="character-item">
-            <div class="character-name" tabindex="0" aria-describedby="tooltip-kaminari">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-ayato">
                 10. Kamisato Ayato
-                <div class="tooltip" id="tooltip-kaminari">
+                <div class="tooltip" id="tooltip-ayato">
                     <img src="images/ayato.jpg" alt="Kamisato Ayato">
                 </div>
             </div>
