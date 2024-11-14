@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mest Populære Minecraft Mobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Brug background.jpg som baggrundsbillede */
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            /* Overlay for bedre læsbarhed */
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            position: relative; /* For at positionere header korrekt */
+        }
+        header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+        }
+        .home-link a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: 2px solid #1e90ff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .home-link a:hover {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+        h1 {
+            color: #ffcc00;
+            text-align: center;
+            text-shadow: 2px 2px #1e90ff;
+            margin: 20px 0 10px;
+        }
+        .mob-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            list-style-type: none;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+        }
+        .mob-item {
+            position: relative; /* For positioning the tooltip */
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+        }
+        .mob-item:last-child {
+            border-bottom: none;
+        }
+        .mob-name {
+            font-size: 1.5em;
+            color: #1e90ff;
+            font-weight: bold;
+            cursor: pointer; /* Indikerer interaktivitet */
+            position: relative;
+        }
+        .mob-description {
+            margin: 8px 0 0;
+        }
+        /* Tooltip container */
+        .mob-name:hover .tooltip,
+        .mob-name:focus .tooltip {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Tooltip styling */
+        .tooltip {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            position: absolute;
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            width: 300px; /* Øget bredde til 300px */
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #1e90ff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .tooltip img {
+            width: 100%; /* Billedet fylder nu hele tooltip-ens bredde */
+            height: auto;
+            border-radius: 5px;
+        }
+        /* Arrow for the tooltip */
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #1e90ff transparent transparent;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+            .mob-list {
+                padding: 10px;
+            }
+            .mob-name {
+                font-size: 1.2em;
+            }
+            .tooltip {
+                left: 50%;
+                top: -310px; /* Justeret for at passe til større tooltip */
+                transform: translateX(-50%);
+                width: 300px;
+            }
+            .tooltip::before {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-color: #1e90ff transparent transparent transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="home-link">
+            <a href="../index.html">Home</a>
+        </div>
+    </header>
+
+    <h1>De 10 Mest Populære Minecraft Mobs</h1>
+
+    <ul class="mob-list">
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-zombie">
+                1. Zombie
+                <div class="tooltip" id="tooltip-zombie">
+                    <img src="images/zombie.png" alt="Zombie">
+                </div>
+            </div>
+            <p class="mob-description">Zombies er klassiske fjender i Minecraft, kendt for deres evne til at angribe spilleren og sprede sig i mørke områder.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-skeleton">
+                2. Skeleton
+                <div class="tooltip" id="tooltip-skeleton">
+                    <img src="images/skeleton.png" alt="Skeleton">
+                </div>
+            </div>
+            <p class="mob-description">Skeletons er bueskytter, der angriber spilleren med buer og pile. De findes ofte i mørke biomer og graveyards.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-creeper">
+                3. Creeper
+                <div class="tooltip" id="tooltip-creeper">
+                    <img src="images/creeper.png" alt="Creeper">
+                </div>
+            </div>
+            <p class="mob-description">Creepers er ikoniske for deres evne til at eksplodere, hvilket kan skade spilleren og ødelægge omgivelserne.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-spider">
+                4. Spider
+                <div class="tooltip" id="tooltip-spider">
+                    <img src="images/spider.png" alt="Spider">
+                </div>
+            </div>
+            <p class="mob-description">Spiders er hurtige og kan klatre på vægge. De bliver mere aggressive om natten eller i mørke områder.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-enderman">
+                5. Enderman
+                <div class="tooltip" id="tooltip-enderman">
+                    <img src="images/enderman.png" alt="Enderman">
+                </div>
+            </div>
+            <p class="mob-description">Endermans er mystiske væsner, der kan teleportere og samle blokke. De angriber spilleren, hvis de bliver stirret direkte i øjnene.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-piglin">
+                6. Piglin
+                <div class="tooltip" id="tooltip-piglin">
+                    <img src="images/piglin.png" alt="Piglin">
+                </div>
+            </div>
+            <p class="mob-description">Piglins findes i Nether og handler med guld. De er neutrale, medmindre spilleren ikke bærer guld, hvorefter de bliver fjendtlige.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-ghast">
+                7. Ghast
+                <div class="tooltip" id="tooltip-ghast">
+                    <img src="images/ghast.png" alt="Ghast">
+                </div>
+            </div>
+            <p class="mob-description">Ghasts er store flyvende mobs i Nether, der angriber med ildkugler. Deres skrig kan give status-effekter til spilleren.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-blaze">
+                8. Blaze
+                <div class="tooltip" id="tooltip-blaze">
+                    <img src="images/blaze.png" alt="Blaze">
+                </div>
+            </div>
+            <p class="mob-description">Blazes er ildbaserede mobs i Nether, der angriber med ildkugler. De findes ofte i Nether-fortresses.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-witch">
+                9. Witch
+                <div class="tooltip" id="tooltip-witch">
+                    <img src="images/witch.png" alt="Witch">
+                </div>
+            </div>
+            <p class="mob-description">Witches bruger forskellige potions til at angribe spilleren eller helbrede sig selv. De findes i forskellige biomer.</p>
+        </li>
+        <li class="mob-item">
+            <div class="mob-name" tabindex="0" aria-describedby="tooltip-ender_dragon">
+                10. Ender Dragon
+                <div class="tooltip" id="tooltip-ender_dragon">
+                    <img src="images/ender_dragon.png" alt="Ender Dragon">
+                </div>
+            </div>
+            <p class="mob-description">Ender Dragon er den ultimative boss i Minecraft, der findes i The End. At besejre Ender Dragon er en stor bedrift og afslutter spillet.</p>
+        </li>
+    </ul>
+
+</body>
+</html>

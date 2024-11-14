@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mest Populære Fortnite Karakterer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Brug background.jpg som baggrundsbillede */
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            /* Overlay for bedre læsbarhed */
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            position: relative; /* For at positionere header korrekt */
+        }
+        header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+        }
+        .home-link a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: 2px solid #1e90ff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .home-link a:hover {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+        h1 {
+            color: #ffcc00;
+            text-align: center;
+            text-shadow: 2px 2px #1e90ff;
+            margin: 20px 0 10px;
+        }
+        .character-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            list-style-type: none;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+        }
+        .character-item {
+            position: relative; /* For positioning the tooltip */
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+        }
+        .character-item:last-child {
+            border-bottom: none;
+        }
+        .character-name {
+            font-size: 1.5em;
+            color: #1e90ff;
+            font-weight: bold;
+            cursor: pointer; /* Indikerer interaktivitet */
+            position: relative;
+        }
+        .character-description {
+            margin: 8px 0 0;
+        }
+        /* Tooltip container */
+        .character-name:hover .tooltip,
+        .character-name:focus .tooltip {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Tooltip styling */
+        .tooltip {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            position: absolute;
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            width: 300px; /* Øget bredde til 300px */
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #1e90ff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .tooltip img {
+            width: 100%; /* Billedet fylder nu hele tooltip-ens bredde */
+            height: auto;
+            border-radius: 5px;
+        }
+        /* Arrow for the tooltip */
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #1e90ff transparent transparent;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+            .character-list {
+                padding: 10px;
+            }
+            .character-name {
+                font-size: 1.2em;
+            }
+            .tooltip {
+                left: 50%;
+                top: -310px; /* Justeret for at passe til større tooltip */
+                transform: translateX(-50%);
+                width: 300px;
+            }
+            .tooltip::before {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-color: #1e90ff transparent transparent transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="home-link">
+            <a href="../index.html">Home</a>
+        </div>
+    </header>
+
+    <h1>De 10 Mest Populære Fortnite Karakterer</h1>
+
+    <ul class="character-list">
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-jonesy">
+                1. Jonesy
+                <div class="tooltip" id="tooltip-jonesy">
+                    <img src="images/jonesy.webp" alt="Jonesy">
+                </div>
+            </div>
+            <p class="character-description">Jonesy er en ikonisk karakter i Fortnite, kendt for sin alsidighed og rolle som en af spillets hovedpersoner.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-peely">
+                2. Peely
+                <div class="tooltip" id="tooltip-peely">
+                    <img src="images/peely.webp" alt="Peely">
+                </div>
+            </div>
+            <p class="character-description">Peely er en sjov og elsket bananfigur, der bringer et smil til spillernes ansigter med sin unikke stil.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-raven">
+                3. Raven
+                <div class="tooltip" id="tooltip-raven">
+                    <img src="images/raven.webp" alt="Raven">
+                </div>
+            </div>
+            <p class="character-description">Raven er kendt for sin mørke og mystiske fremtoning, samt sine kraftfulde evner i kamp.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-drift">
+                4. Drift
+                <div class="tooltip" id="tooltip-drift">
+                    <img src="images/drift.webp" alt="Drift">
+                </div>
+            </div>
+            <p class="character-description">Drift er en populær karakter med en futuristisk stil og evnen til at manipulere tids- og rumdimensioner.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-lynx">
+                5. Lynx
+                <div class="tooltip" id="tooltip-lynx">
+                    <img src="images/lynx.webp" alt="Lynx">
+                </div>
+            </div>
+            <p class="character-description">Lynx er en hurtig og smidig karakter, der excellerer i stealth og præcisionsangreb.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-midas">
+                6. Midas
+                <div class="tooltip" id="tooltip-midas">
+                    <img src="images/midas.webp" alt="Midas">
+                </div>
+            </div>
+            <p class="character-description">Midas er kendt for sin evne til at forvandle alt, han rører ved, til guld, hvilket giver ham en strategisk fordel på slagmarken.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-ramirez">
+                7. Ramirez
+                <div class="tooltip" id="tooltip-ramirez">
+                    <img src="images/ramirez.webp" alt="Ramirez">
+                </div>
+            </div>
+            <p class="character-description">Ramirez er en stærk og modig soldat, der altid er klar til at beskytte sine holdkammerater og føre an i kamp.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-fishstick">
+                8. Fishstick
+                <div class="tooltip" id="tooltip-fishstick">
+                    <img src="images/fishstick.webp" alt="Fishstick">
+                </div>
+            </div>
+            <p class="character-description">Fishstick er en humoristisk og unik karakter, der skiller sig ud med sit fiskeudseende og skarpe sans for humor.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-britebomb">
+                9. Brite Bomber
+                <div class="tooltip" id="tooltip-britebomb">
+                    <img src="images/britebomber.webp" alt="Brite Bomber">
+                </div>
+            </div>
+            <p class="character-description">Brite Bomber er kendt for sin farverige stil og evne til at sprede glæde og feststemning på slagmarken.</p>
+        </li>
+        <li class="character-item">
+            <div class="character-name" tabindex="0" aria-describedby="tooltip-darkbomb">
+                10. Dark Bomber
+                <div class="tooltip" id="tooltip-darkbomb">
+                    <img src="images/darkbomber.webp" alt="Dark Bomber">
+                </div>
+            </div>
+            <p class="character-description">Dark Bomber bringer en mørk og mystisk energi til spillet, med kraftfulde angreb og strategiske evner.</p>
+        </li>
+    </ul>
+
+</body>
+</html>
